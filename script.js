@@ -34,37 +34,20 @@ function playRound(playerSelection, computerSelection) {
         
 }
 
+function getPlayerMove() {
+    const playerSelection = this.dataset.move;
+    const computerSelection = computerPlay();
+    console.log(playRound(playerSelection, computerSelection));
+}
+
 //players scores
 let playerScore = 0;
 let computerScore = 0;
 
 function game() {
+    const buttons = document.querySelectorAll(".move");
 
-    let winner = "";
-    let keepRunning = true;
-    
-    while (keepRunning) {
-    
-        const playerSelection = prompt("Chose you play(rock, paper, scissors):");
-        const computerSelection = computerPlay();
-    
-        //display results
-        console.log(playRound(playerSelection, computerSelection))
-        
-    
-        //checking victory
-        if (computerScore >= 5) {
-            winner = "computer";
-            keepRunning = false;
-        }
-    
-        if (playerScore >= 5) {
-            winner = "player";
-            keepRunning = false;
-        }
-    }
-    //display winner
-    console.log(`The winner is ${winner}`);
+    buttons.forEach(btn => btn.addEventListener("click", getPlayerMove))   
 }
 
 game();
